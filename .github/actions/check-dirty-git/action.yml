@@ -7,6 +7,9 @@ runs:
     - name: Checking dirty git
       shell: bash
       run: |
+        # Workaround for https://github.com/actions/checkout/issues/766
+        git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
         if [[ -n $(git status --porcelain) ]]; then
           echo "repo is dirty"
           git status
