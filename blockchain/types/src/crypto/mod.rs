@@ -3,5 +3,3 @@
 //! Cryptographic helpers for blockchain types.
 
 pub mod metadata;
-
-pub use self::metadata::{MetadataSigner, MetadataVerifier};

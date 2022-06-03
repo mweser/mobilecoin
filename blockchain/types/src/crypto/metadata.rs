@@ -16,7 +16,13 @@ pub trait MetadataSigner: DigestibleSigner<Self::Signature, BlockMetadataContent
     fn sign_metadata(
         &self,
         contents: &BlockMetadataContents,
-    ) -> Result<Self::Signature, SignatureError>;
+    ) -> Result<Self::Signature, SignatureError> {
+        self.try_sign_digestible(block_metadata_context(), contents)
+    }
+}
+
+impl MetadataSigner for Ed25519Pair {
+    type Signature = Ed25519Signature;
 }
 
 pub trait MetadataVerifier: DigestibleVerifier<Self::Signature, BlockMetadataContents> {
@@ -26,28 +32,11 @@ pub trait MetadataVerifier: DigestibleVerifier<Self::Signature, BlockMetadataCon
         &self,
         contents: &BlockMetadataContents,
         signature: &Self::Signature,
-    ) -> Result<(), SignatureError>;
-}
-
-impl MetadataSigner for Ed25519Pair {
-    type Signature = Ed25519Signature;
-
-    fn sign_metadata(
-        &self,
-        contents: &BlockMetadataContents,
-    ) -> Result<Ed25519Signature, SignatureError> {
-        self.try_sign_digestible(block_metadata_context(), contents)
+    ) -> Result<(), SignatureError> {
+        self.verify_digestible(block_metadata_context(), contents, signature)
     }
 }
 
 impl MetadataVerifier for Ed25519Public {
     type Signature = Ed25519Signature;
-
-    fn verify_metadata(
-        &self,
-        contents: &BlockMetadataContents,
-        signature: &Self::Signature,
-    ) -> Result<(), SignatureError> {
-        self.verify_digestible(block_metadata_context(), contents, signature)
-    }
 }

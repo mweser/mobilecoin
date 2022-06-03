@@ -4,7 +4,7 @@
 //! level, and just do a round-trip.
 
 use mc_blockchain_test_utils::{make_quorum_set, make_verification_report};
-use mc_blockchain_types::{crypto::*, BlockID, BlockMetadataContents};
+use mc_blockchain_types::{crypto::metadata::*, BlockID, BlockMetadataContents};
 use mc_crypto_keys::Ed25519Pair;
 use mc_util_from_random::FromRandom;
 use mc_util_test_helper::run_with_several_seeds;

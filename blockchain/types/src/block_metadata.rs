@@ -1,7 +1,7 @@
 // Copyright (c) 2018-2022 The MobileCoin Foundation
 
 use crate::{
-    crypto::{MetadataSigner, MetadataVerifier},
+    crypto::metadata::{MetadataSigner, MetadataVerifier},
     BlockID, QuorumSet, VerificationReport,
 };
 use displaydoc::Display;
