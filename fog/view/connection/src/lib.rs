@@ -5,6 +5,9 @@
 
 #![deny(missing_docs)]
 
+/// Make dummy requests to the fog view router service
+pub mod fog_view_router_client;
+
 use grpcio::{ChannelBuilder, Environment};
 use mc_attest_verifier::Verifier;
 use mc_common::{
