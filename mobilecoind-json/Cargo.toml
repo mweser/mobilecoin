@@ -14,7 +14,7 @@ mc-common = { path = "../common", features = ["loggers"] }
 mc-mobilecoind-api = { path = "../mobilecoind/api" }
 mc-util-grpc = { path = "../util/grpc" }
 
-clap = { version = "3.1", features = ["derive", "env"] }
+clap = { version = "4.0", features = ["derive", "env"] }
 grpcio = "0.10.2"
 hex = "0.4"
 protobuf = "2.27.1"
